@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4413C1372DD8C8BF00FD37CB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4413C1362DD8C8BF00FD37CB /* Alamofire */; };
+		4413C13C2DD8C92C00FD37CB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4413C13B2DD8C92C00FD37CB /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4413C10D2DD8C40100FD37CB /* RepoDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -14,7 +19,7 @@
 		4413C11F2DD8C40200FD37CB /* Exceptions for "RepoDiscovery" folder in "RepoDiscovery" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 4413C10C2DD8C40100FD37CB /* RepoDiscovery */;
 		};
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4413C1372DD8C8BF00FD37CB /* Alamofire in Frameworks */,
+				4413C13C2DD8C92C00FD37CB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = RepoDiscovery;
 			packageProductDependencies = (
+				4413C1362DD8C8BF00FD37CB /* Alamofire */,
+				4413C13B2DD8C92C00FD37CB /* SnapKit */,
 			);
 			productName = RepoDiscovery;
 			productReference = 4413C10D2DD8C40100FD37CB /* RepoDiscovery.app */;
@@ -104,9 +113,14 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 4413C1042DD8C40100FD37CB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4413C1352DD8C8BF00FD37CB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4413C13A2DD8C92C00FD37CB /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4413C10E2DD8C40100FD37CB /* Products */;
 			projectDirPath = "";
@@ -147,10 +161,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZHAY9X6DYX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RepoDiscovery/Info.plist;
+				INFOPLIST_FILE = RepoDiscovery/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -175,10 +188,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZHAY9X6DYX;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RepoDiscovery/Info.plist;
+				INFOPLIST_FILE = RepoDiscovery/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -199,6 +211,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -262,6 +275,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -335,6 +349,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4413C1352DD8C8BF00FD37CB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		4413C13A2DD8C92C00FD37CB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4413C1362DD8C8BF00FD37CB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4413C1352DD8C8BF00FD37CB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		4413C13B2DD8C92C00FD37CB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4413C13A2DD8C92C00FD37CB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4413C1052DD8C40100FD37CB /* Project object */;
 }

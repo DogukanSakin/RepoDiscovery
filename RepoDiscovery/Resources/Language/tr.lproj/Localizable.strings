@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  RepoDiscovery
+
+  Created by Doğukan Sakin on 17.05.2025.
+  
+*/
+
+// MARK: - Tab
+
+"discovery" = "Keşfet";
+"my_favorites" = "Favorilerim";
+"settings" = "Ayarlar";

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MyFavoritesViewController.swift
 //  RepoDiscovery
 //
 //  Created by Doğukan Sakin on 17.05.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MyFavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
