@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - RepositoryModel
+
 struct RepositoryModel: Decodable {
     let totalCount: Int
     let incompleteResults: Bool
@@ -21,6 +22,7 @@ struct RepositoryModel: Decodable {
 }
 
 // MARK: - Repository
+
 struct Repository: Decodable {
     let id: Int
     let name: String
@@ -30,6 +32,7 @@ struct Repository: Decodable {
     let stargazersCount: Int
     let language: String?
     let owner: Owner
+    var isBookmarked: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -44,6 +47,7 @@ struct Repository: Decodable {
 }
 
 // MARK: - Owner
+
 struct Owner: Decodable {
     let login: String
     let id: Int
@@ -53,5 +57,24 @@ struct Owner: Decodable {
         case login
         case id
         case avatarURL = "avatar_url"
+    }
+}
+
+// MARK: - Hashable
+
+extension Repository: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(isBookmarked)
+    }
+
+    static func == (lhs: Repository, rhs: Repository) -> Bool {
+        lhs.id == rhs.id && lhs.isBookmarked == rhs.isBookmarked
+    }
+}
+
+extension Owner: Hashable {
+    static func == (lhs: Owner, rhs: Owner) -> Bool {
+        lhs.id == rhs.id
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DiscoveryViewController.swift
+//  BookmarksViewController.swift
 //  RepoDiscovery
 //
 //  Created by Doğukan Sakin on 17.05.2025.
@@ -8,25 +8,50 @@
 import Combine
 import UIKit
 
-class DiscoveryViewController: UIViewController {
+class BookmarksViewController: UIViewController {
     // MARK: Views
 
-    let discoveryView = DiscoveryView()
+    let bookmarksView = BookmarksView()
     let loaderView = LoaderView()
 
     // MARK: View Models
 
-    var discoveryViewModel: DiscoveryViewModel!
+    var bookmarksViewModel: BookmarkViewModel!
 
     // MARK: Combine Props
 
     private var cancellables = Set<AnyCancellable>()
 
+    // MARK: View Cycles
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        bookmarksView.repositoryListView.delegate = self
+        bindViewModel()
+
+        Task {
+            try await bookmarksViewModel.fetchBookmarkedRepos()
+        }
+    }
+
+    override func loadView() {
+        super.loadView()
+        view = bookmarksView
+        view.addSubview(loaderView)
+
+        loaderView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        title = NSLocalizedString("bookmarks", comment: "")
+    }
+
     // MARK: Inits
 
-    init(discoveryViewModel: DiscoveryViewModel) {
+    init(bookmarksViewModel: BookmarkViewModel) {
         super.init(nibName: nil, bundle: nil)
-        self.discoveryViewModel = discoveryViewModel
+        self.bookmarksViewModel = bookmarksViewModel
     }
 
     @available(*, unavailable)
@@ -34,36 +59,10 @@ class DiscoveryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: View Cycles
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        discoveryView.languageFilterView.delegate = self
-        discoveryView.repositoryListView.delegate = self
-        bindViewModel()
-
-        Task {
-            await discoveryViewModel.fetchRepositories(language: Config.DEFAULT_SELECTED_LANGUAGE)
-        }
-    }
-
-    override func loadView() {
-        super.loadView()
-        view = discoveryView
-        view.addSubview(loaderView)
-
-        loaderView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
-        title = NSLocalizedString("discovery", comment: "")
-    }
-
     // MARK: View Model Bindings
 
     func bindViewModel() {
-        discoveryViewModel.$isLoading
+        bookmarksViewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
                 if isLoading {
@@ -74,14 +73,14 @@ class DiscoveryViewController: UIViewController {
             }
             .store(in: &cancellables)
 
-        discoveryViewModel.$repositories
+        BookmarkService.shared.$bookmarkedRepositories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] repositories in
-                self?.discoveryView.repositoryListView.applySnapshot(repos: repositories)
+                self?.bookmarksView.repositoryListView.applySnapshot(repos: repositories)
             }
             .store(in: &cancellables)
 
-        discoveryViewModel.$error
+        bookmarksViewModel.$error
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 guard let self = self, let error = error else { return }
@@ -93,20 +92,10 @@ class DiscoveryViewController: UIViewController {
     }
 }
 
-// MARK: - Language Filter Delegate
-
-extension DiscoveryViewController: LanguageFilterViewDelegate {
-    func didSelectLanguage(_ language: String) {
-        Task {
-            await discoveryViewModel.fetchRepositories(language: language)
-        }
-    }
-}
-
 // MARK: - Bookmark Delegate
 
-extension DiscoveryViewController: RepositoryListViewDelegate {
+extension BookmarksViewController: RepositoryListViewDelegate {
     func didTapBookmark(for repo: Repository) {
-        discoveryViewModel.toggleBookmark(for: repo)
+        bookmarksViewModel.toogleBookmark(repo)
     }
 }

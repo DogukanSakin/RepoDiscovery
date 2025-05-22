@@ -9,5 +9,6 @@
 // MARK: - Tab
 
 "discovery" = "Keşfet";
-"my_favorites" = "Favorilerim";
-"settings" = "Ayarlar";
+"bookmarks" = "Kaydedilenler";
+"error" = "Hata";
+"ok" = "Tamam";

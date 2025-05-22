@@ -1,16 +1,19 @@
 //
-//  DiscoveryView.swift
+//  BookmarksView.swift
 //  RepoDiscovery
 //
-//  Created by Doğukan Sakin on 17.05.2025.
+//  Created by Doğukan Sakin on 22.05.2025.
 //
 
 import SnapKit
 import UIKit
 
-final class DiscoveryView: UIView {
-    let languageFilterView = LanguageFilterView()
+final class BookmarksView: UIView {
     let repositoryListView = RepositoryListView()
+
+    // MARK: View Models
+
+    var bookmarkViewModel: BookmarkViewModel!
 
     // MARK: Main View
 
@@ -36,10 +39,9 @@ final class DiscoveryView: UIView {
 
 // MARK: - View Setups
 
-extension DiscoveryView {
+extension BookmarksView {
     private func addSubviews() {
         addSubview(mainView)
-        mainView.addSubview(languageFilterView)
         mainView.addSubview(repositoryListView)
     }
 
@@ -48,15 +50,8 @@ extension DiscoveryView {
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
 
-        languageFilterView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalToSuperview().offset(10)
-            make.height.equalTo(40)
-        }
-
         repositoryListView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(languageFilterView.snp.bottom).offset(20)
+            make.leading.trailing.top.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
     }

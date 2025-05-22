@@ -9,5 +9,6 @@
 // MARK: - Tab
 
 "discovery" = "Discovery";
-"my_favorites" = "My Favorites";
-"settings" = "Setting";
+"bookmarks" = "Bookmarks";
+"error" = "Error";
+"ok" = "OK";
