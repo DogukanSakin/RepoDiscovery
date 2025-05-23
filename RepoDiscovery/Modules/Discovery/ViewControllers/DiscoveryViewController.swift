@@ -106,6 +106,12 @@ extension DiscoveryViewController: LanguageFilterViewDelegate {
 // MARK: - Bookmark Delegate
 
 extension DiscoveryViewController: RepositoryListViewDelegate {
+    func didSelectRepository(_ repo: Repository) {
+        let detailVC = DetailViewController()
+        detailVC.repository = repo
+        navigationController?.pushViewController(detailVC, animated: false)
+    }
+
     func didTapBookmark(for repo: Repository) {
         discoveryViewModel.toggleBookmark(for: repo)
     }

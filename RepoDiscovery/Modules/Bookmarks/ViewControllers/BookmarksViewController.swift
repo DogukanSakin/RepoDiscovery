@@ -95,6 +95,12 @@ class BookmarksViewController: UIViewController {
 // MARK: - Bookmark Delegate
 
 extension BookmarksViewController: RepositoryListViewDelegate {
+    func didSelectRepository(_ repo: Repository) {
+        let detailVC = DetailViewController()
+        detailVC.repository = repo
+        navigationController?.pushViewController(detailVC, animated: false)
+    }
+
     func didTapBookmark(for repo: Repository) {
         bookmarksViewModel.toogleBookmark(repo)
     }

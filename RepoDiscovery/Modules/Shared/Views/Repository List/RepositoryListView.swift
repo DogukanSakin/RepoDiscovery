@@ -10,6 +10,7 @@ import UIKit
 
 protocol RepositoryListViewDelegate: AnyObject {
     func didTapBookmark(for repo: Repository)
+    func didSelectRepository(_ repo: Repository)
 }
 
 final class RepositoryListView: UIView {
@@ -54,7 +55,7 @@ extension RepositoryListView {
         tableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
         tableView.rowHeight = 160
         tableView.estimatedRowHeight = 160
-
+        tableView.delegate = self
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -89,5 +90,12 @@ extension RepositoryListView {
 extension RepositoryListView: RepositoryCellDelegate {
     func didTapBookmark(for repo: Repository) {
         delegate?.didTapBookmark(for: repo)
+    }
+}
+
+extension RepositoryListView: UITableViewDelegate {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let repo = dataSource.itemIdentifier(for: indexPath) else { return }
+        delegate?.didSelectRepository(repo)
     }
 }
